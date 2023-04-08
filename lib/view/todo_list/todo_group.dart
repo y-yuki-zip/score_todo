@@ -21,6 +21,7 @@ class TodoGroup extends StatefulWidget {
   TodoGroupState createState() => TodoGroupState();
 }
 
+
 /// Todoリストのタブの状態
 class TodoGroupState extends State<TodoGroup> {
   @override

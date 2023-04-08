@@ -8,6 +8,8 @@ class TodoAddPage extends StatefulWidget {
   @override
   TodoAddPageState createState() => TodoAddPageState();
 }
+
+
 // リスト追加の状態
 class TodoAddPageState extends State<TodoAddPage> {
   String _text = '';  

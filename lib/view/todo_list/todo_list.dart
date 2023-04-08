@@ -10,6 +10,8 @@ class TodoListPage extends StatefulWidget {
   @override
   TodoListPageState createState() =>  TodoListPageState();
 }
+
+
 // ToDoリスト
 class TodoListPageState extends State<TodoListPage> {
   // Todoリストのデータ
