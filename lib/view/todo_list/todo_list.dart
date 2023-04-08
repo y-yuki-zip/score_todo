@@ -27,7 +27,9 @@ class TodoListPageState extends State<TodoListPage> {
           itemBuilder: (context, index) {
             return Card(
               child: ListTile(
-                title: Text(todoList[index])
+                title: Text(todoList[index]),
+                leading: Icon(Icons.circle_outlined),
+                trailing: Icon(Icons.edit),
               )
             );
           },
@@ -50,6 +52,34 @@ class TodoListPageState extends State<TodoListPage> {
         },
         child: const Icon(Icons.add)
       ),
+    );
+  }
+
+  // ToDoリストアイテムを作成する
+  Widget _buildTodoItem(String item, int index) {
+    return ListTile(
+      title: Text(item),
+      trailing: IconButton(
+        icon: const Icon(Icons.delete),
+        onPressed: () => _removeTodoItem(index),
+      )
+    );
+  }
+
+  // Todoリストアイテムを削除する
+  void _removeTodoItem(int index) {
+    setState(() {
+      todoList.removeAt(index);
+    });
+  }
+
+  // Todoリストを作成する
+  Widget _buildTodoList() {
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return _buildTodoItem(todoList[index], index);
+      },
+      itemCount: todoList.length,
     );
   }
 }
