@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'ToDoList/ToDoAddView.dart' ;
-import 'ToDoList/ToDoListview.dart' ;
+import 'todo_list/todo_list.dart' ;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

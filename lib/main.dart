@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'view/MyApp.dart';
+import 'view/myapp.dart';
 
 void main() {
   // エントリポイント
