@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 
 // リスト追加
 class TodoAddPage extends StatefulWidget {
+  // コンストラクタ
+  const TodoAddPage({super.key});
+
   @override
-  _TodoAddPageState createState() => _TodoAddPageState();
+  TodoAddPageState createState() => TodoAddPageState();
 }
 // リスト追加の状態
-class _TodoAddPageState extends State<TodoAddPage> {
+class TodoAddPageState extends State<TodoAddPage> {
   String _text = '';  
 
   @override
@@ -34,7 +37,7 @@ class _TodoAddPageState extends State<TodoAddPage> {
             // 余白
             const SizedBox(height: 8),
             // ボタン
-            Container(
+            SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: (){
@@ -46,7 +49,7 @@ class _TodoAddPageState extends State<TodoAddPage> {
             ),
             // 余白
             const SizedBox(height: 8),
-            Container(
+            SizedBox(
               width: double.infinity,
               child: TextButton(
                 onPressed: (){

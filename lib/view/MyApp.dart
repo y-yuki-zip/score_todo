@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'todo_list/todo_list.dart' ;
+import 'todo_list/todo_group.dart' ;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // リスト一覧
-      home: TodoListPage(),
+      home: const TodoGroup(),
     );
   }
 }

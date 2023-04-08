@@ -3,20 +3,21 @@ import 'todo_add.dart' ;
 
 // ToDoリスト一覧画面
 class TodoListPage extends StatefulWidget {
+  // コンストラクタ
+  const TodoListPage({super.key});
+
+  // createStateのオーバーライド
   @override
-  _TodoListPageState createState() =>  _TodoListPageState();
+  TodoListPageState createState() =>  TodoListPageState();
 }
 // ToDoリスト
-class _TodoListPageState extends State<TodoListPage> {
+class TodoListPageState extends State<TodoListPage> {
   // Todoリストのデータ
   List<String> todoList = [];
 
   @override
   Widget build(BuildContext context) {
       return Scaffold(
-        appBar: AppBar(
-          title: const Text('リスト一覧'),
-        ),
         body: ListView.builder(
           // リストの行数
           itemCount: todoList.length,
@@ -35,7 +36,7 @@ class _TodoListPageState extends State<TodoListPage> {
           final newListText = await Navigator.of(context).push(
             MaterialPageRoute(builder: (context) {
               // ToDo追加画面に遷移する
-              return TodoAddPage();
+              return const TodoAddPage();
             }),
           );
           // 変更を受け取れば
