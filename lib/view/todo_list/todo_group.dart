@@ -5,13 +5,17 @@ import 'todo_list.dart';
 class TodoGroup extends StatefulWidget {
   const TodoGroup({Key? key}) : super(key: key);
 
+  // タブのヘッダー
   static const List<Widget> tabs = [
-    Icon(Icons.directions_car),
-    Icon(Icons.directions_bus),
-    Icon(Icons.directions_bike),
+    Text('買い物リスト'),
+    Text('今日やること'),
+    Text('明日タスク１'),
+    Text('明後日タスク２'),
   ];
 
-  static const List<Widget> tabBodys = [
+  // タブのボディ
+  static const List<Widget> tabBodies = [
+    TodoListPage(),
     TodoListPage(),
     TodoListPage(),
     TodoListPage(),
@@ -28,16 +32,17 @@ class TodoGroupState extends State<TodoGroup> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: DefaultTabController(
-        length: 3,
+        length: TodoGroup.tabs.length,
         child: Scaffold(
           appBar: AppBar(
             bottom: const TabBar(
+              isScrollable: true,            
               tabs: TodoGroup.tabs,
             ),
             title: const Text('ToDo'),
           ),
           body: const TabBarView(
-            children: TodoGroup.tabBodys,
+            children: TodoGroup.tabBodies,
           ),
         ),
       ),
