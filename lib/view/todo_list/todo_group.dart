@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'todo_list.dart';
+import 'todo_add.dart';
 
 /// Todoリストのタブ
 class TodoGroup extends StatefulWidget {
+  /// コンストラクタ
   const TodoGroup({Key? key}) : super(key: key);
 
-  // タブのヘッダー
+  /// State作成
+  @override TodoGroupState createState() => TodoGroupState();
+}
+
+
+/// Todoリストのタブの状態
+class TodoGroupState extends State<TodoGroup> {
+    // タブのヘッダー
   static const List<Widget> tabs = [
     Tab(
       child: Padding(
@@ -41,18 +50,12 @@ class TodoGroup extends StatefulWidget {
     TodoListPage(),
   ];
 
-  @override
-  TodoGroupState createState() => TodoGroupState();
-}
 
-
-/// Todoリストのタブの状態
-class TodoGroupState extends State<TodoGroup> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: DefaultTabController(
-        length: TodoGroup.tabs.length,
+        length: tabs.length,
         child: Scaffold(
           appBar: AppBar(
             title: const Text('ToDo'),
@@ -62,12 +65,12 @@ class TodoGroupState extends State<TodoGroup> {
               // タブバー
               child: TabBar(
                 isScrollable: true,
-                tabs: TodoGroup.tabs,
+                tabs: tabs,
               )
             )
           ),
           body: const TabBarView(
-            children: TodoGroup.tabBodies,
+            children: tabBodies,
           ),
         ),
       ),
