@@ -7,10 +7,30 @@ class TodoGroup extends StatefulWidget {
 
   // タブのヘッダー
   static const List<Widget> tabs = [
-    Text('買い物リスト'),
-    Text('今日やること'),
-    Text('明日タスク１'),
-    Text('明後日タスク２'),
+    Tab(
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
+        child: Text('買い物リスト'),
+      ),
+    ),
+    Tab(
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
+        child: Text('買い物リスト'),
+      ),
+    ),
+    Tab(
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
+        child: Text('買い物リスト'),
+      ),
+    ),
+    Tab(
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
+        child: Text('買い物リスト'),
+      ),
+    ),
   ];
 
   // タブのボディ
@@ -35,11 +55,16 @@ class TodoGroupState extends State<TodoGroup> {
         length: TodoGroup.tabs.length,
         child: Scaffold(
           appBar: AppBar(
-            bottom: const TabBar(
-              isScrollable: true,            
-              tabs: TodoGroup.tabs,
-            ),
             title: const Text('ToDo'),
+            bottom: const PreferredSize(
+              // タイトルとの余白を調整できる
+              preferredSize: Size.fromHeight(20),
+              // タブバー
+              child: TabBar(
+                isScrollable: true,
+                tabs: TodoGroup.tabs,
+              )
+            )
           ),
           body: const TabBarView(
             children: TodoGroup.tabBodies,
