@@ -1,5 +1,7 @@
+/// Todoリスト
+
+// include
 import 'package:flutter/material.dart';
-import 'todo_add.dart' ;
 
 // ToDoリスト一覧画面
 class TodoListPage extends StatefulWidget {
@@ -31,8 +33,8 @@ class TodoListPageState extends State<TodoListPage> {
           return Card(
             child: ListTile(
               title: Text(todoList[index]),
-              leading: Icon(Icons.circle_outlined),
-              trailing: Icon(Icons.edit),
+              leading: const Icon(Icons.circle_outlined),
+              trailing: const Icon(Icons.edit),
             )
           );
         },
@@ -107,36 +109,6 @@ class TodoListPageState extends State<TodoListPage> {
         },
         child: const Icon(Icons.add)
       ),
-    );
-  }
-
-
-  // ToDoリストアイテムを作成する
-  Widget _buildTodoItem(String item, int index) {
-    return ListTile(
-      title: Text(item),
-      trailing: IconButton(
-        icon: const Icon(Icons.delete),
-        onPressed: () => _removeTodoItem(index),
-      )
-    );
-  }
-
-
-  // Todoリストアイテムを削除する
-  void _removeTodoItem(int index) {
-    setState(() {
-      todoList.removeAt(index);
-    });
-  }
-
-  // Todoリストを作成する
-  Widget _buildTodoList() {
-    return ListView.builder(
-      itemBuilder: (context, index) {
-        return _buildTodoItem(todoList[index], index);
-      },
-      itemCount: todoList.length,
     );
   }
 }
