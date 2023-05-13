@@ -25,19 +25,19 @@ class TodoGroupState extends State<TodoGroup> {
     Tab(
       child: Padding(
         padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
-        child: Text('買い物リスト'),
+        child: Text('その他'),
       ),
     ),
     Tab(
       child: Padding(
         padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
-        child: Text('買い物リスト'),
+        child: Text('List'),
       ),
     ),
     Tab(
       child: Padding(
         padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
-        child: Text('買い物リスト'),
+        child: Text('果物リスト'),
       ),
     ),
   ];

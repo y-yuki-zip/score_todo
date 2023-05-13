@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'view/myapp.dart';
+import 'todo_list/myapp.dart';
 
 void main() {
   // エントリポイント
