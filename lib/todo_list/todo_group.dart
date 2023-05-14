@@ -1,22 +1,19 @@
-/// Todoリストのタブ
-
-// include
 import 'package:flutter/material.dart';
 import 'todo_list.dart';
 
-/// Todoリストのタブ
+/// Todoリスト一覧画面をまとめたクラス
 class TodoGroup extends StatefulWidget {
   /// コンストラクタ
   const TodoGroup({Key? key}) : super(key: key);
 
   /// State作成
-  @override TodoGroupState createState() => TodoGroupState();
+  @override
+  TodoGroupState createState() => TodoGroupState();
 }
 
-
-/// Todoリストのタブの状態
+/// Todoリスト一覧画面の状態
 class TodoGroupState extends State<TodoGroup> {
-    // タブのヘッダー
+  // タブのヘッダー
   static const List<Widget> tabs = [
     Tab(
       child: Padding(
@@ -52,7 +49,6 @@ class TodoGroupState extends State<TodoGroup> {
     TodoListPage(),
   ];
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -60,17 +56,15 @@ class TodoGroupState extends State<TodoGroup> {
         length: tabs.length,
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('ToDo'),
-            bottom: const PreferredSize(
-              // タイトルとの余白を調整できる
-              preferredSize: Size.fromHeight(20),
-              // タブバー
-              child: TabBar(
-                isScrollable: true,
-                tabs: tabs,
-              )
-            )
-          ),
+              title: const Text('ToDo'),
+              bottom: const PreferredSize(
+                  // タイトルとの余白を調整できる
+                  preferredSize: Size.fromHeight(20),
+                  // タブバー
+                  child: TabBar(
+                    isScrollable: true,
+                    tabs: tabs,
+                  ))),
           body: const TabBarView(
             children: tabBodies,
           ),
