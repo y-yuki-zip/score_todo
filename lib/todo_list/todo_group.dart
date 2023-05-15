@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'todo_list.dart';
+import 'package:score_todo/todo_list/todo_list.dart';
+import 'package:score_todo/todo_list/todo_repository.dart';
 
 /// Todoリスト一覧画面をまとめたクラス
 class TodoGroup extends StatefulWidget {
@@ -13,6 +14,16 @@ class TodoGroup extends StatefulWidget {
 
 /// Todoリスト一覧画面の状態
 class TodoGroupState extends State<TodoGroup> {
+  /// このアプリを起動した時のみ呼び出される
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   // 必要なデータベースを構築する
+  //   var todoRepository = TodoRepository();
+  //   todoRepository.createTodoListTable();
+  //   todoRepository.createTaskTable();
+  // }
+
   // タブのヘッダー
   static const List<Widget> tabs = [
     Tab(

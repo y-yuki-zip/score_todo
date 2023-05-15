@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'todo_group.dart';
+import 'package:score_todo/todo_list/todo_group.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

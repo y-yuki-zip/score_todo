@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:score_todo/todo_list/todo_repository.dart';
 
 /// ToDoリスト
 class TodoListPage extends StatefulWidget {
@@ -22,18 +23,23 @@ class TodoListPageState extends State<TodoListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
-        // リストの行数
-        itemCount: todoList.length,
-        // リスト
-        itemBuilder: (context, index) {
-          return Card(
-              child: ListTile(
-            title: Text(todoList[index]),
-            leading: const Icon(Icons.circle_outlined),
-            trailing: const Icon(Icons.edit),
-          ));
-        },
-      ),
+          // リストの行数
+          itemCount: todoList.length,
+          // リスト
+          itemBuilder: (context, index) {
+            return Card(
+                child: ListTile(
+                    title: Text(todoList[index]),
+                    leading: const Icon(Icons.circle_outlined),
+                    trailing: TextButton(
+                      onPressed: () {
+                        setState(() {
+                          todoList.removeAt(index);
+                        });
+                      },
+                      child: const Icon(Icons.delete),
+                    )));
+          }),
       floatingActionButton: FloatingActionButton(
           onPressed: () async {
             // 変更を受け取る
@@ -81,7 +87,18 @@ class TodoListPageState extends State<TodoListPage> {
                                       foregroundColor: Colors.white,
                                     ),
                                     onPressed: () {
-                                      // Textfieldの値を空にして、返却する
+                                      // TODO: 一度、テーブル作成 > インサートを行う
+                                      var rep = TodoRepository();
+                                      rep.createTodoListTable();
+                                      rep.createTaskTable();
+                                      Map<String, dynamic> value = {
+                                        'id': 1,
+                                        'name': 'テスト'
+                                      };
+                                      rep.insertTodoList(value);
+                                      rep.getTodoList();
+
+                                      // TextFieldの値を空にして、返却する
                                       String retTitle = taskTitle;
                                       taskTitle = '';
                                       return Navigator.of(context)
