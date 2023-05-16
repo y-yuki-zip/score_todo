@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:score_todo/todo_list/todo_list.dart';
-import 'package:score_todo/todo_list/todo_repository.dart';
 
 /// Todoリスト一覧画面をまとめたクラス
 class TodoGroup extends StatefulWidget {
