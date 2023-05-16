@@ -14,16 +14,6 @@ class TodoGroup extends StatefulWidget {
 
 /// Todoリスト一覧画面の状態
 class TodoGroupState extends State<TodoGroup> {
-  /// このアプリを起動した時のみ呼び出される
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   // 必要なデータベースを構築する
-  //   var todoRepository = TodoRepository();
-  //   todoRepository.createTodoListTable();
-  //   todoRepository.createTaskTable();
-  // }
-
   // タブのヘッダー
   static const List<Widget> tabs = [
     Tab(
@@ -50,6 +40,10 @@ class TodoGroupState extends State<TodoGroup> {
         child: Text('果物リスト'),
       ),
     ),
+    Tab(
+        child: Padding(
+            padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
+            child: Icon(Icons.add_circle)))
   ];
 
   // タブのボディ

@@ -32,7 +32,13 @@ class TodoListPageState extends State<TodoListPage> {
                     title: Text(todoList[index]),
                     leading: const Icon(Icons.circle_outlined),
                     trailing: TextButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        // とりあえず削除
+                        var rep = TodoRepository();
+                        var db = await rep.createConnection();
+                        print(await rep.deleteTodoList(db, index));
+                        print(await rep.getTodoList(db));
+
                         setState(() {
                           todoList.removeAt(index);
                         });
@@ -86,17 +92,19 @@ class TodoListPageState extends State<TodoListPage> {
                                       backgroundColor: Colors.green,
                                       foregroundColor: Colors.white,
                                     ),
-                                    onPressed: () {
-                                      // TODO: 一度、テーブル作成 > インサートを行う
+                                    onPressed: () async {
+                                      //　テーブル作成〜インサート＆ゲットまで
                                       var rep = TodoRepository();
-                                      rep.createTodoListTable();
-                                      rep.createTaskTable();
+                                      var db = await rep.createConnection();
+                                      rep.createTodoListTable(db);
+                                      rep.createTaskTable(db);
                                       Map<String, dynamic> value = {
-                                        'id': 1,
-                                        'name': 'テスト'
+                                        'name': taskTitle
                                       };
-                                      rep.insertTodoList(value);
-                                      rep.getTodoList();
+                                      print("aa");
+                                      print(
+                                          await rep.insertTodoList(db, value));
+                                      print(await rep.getTodoList(db));
 
                                       // TextFieldの値を空にして、返却する
                                       String retTitle = taskTitle;

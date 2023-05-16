@@ -9,7 +9,7 @@ class TodoRepository extends AbstractRepository {
   final _listID = 'list_id';
   // 表示優先度
   final _priority = 'priority';
-  // タスク名
+  // タスク名＆リスト名
   final _name = 'name';
   // タスク詳細
   final _detail = 'detail';
@@ -19,31 +19,19 @@ class TodoRepository extends AbstractRepository {
   final _todoTaskTable = 'TodoTask';
 
   /// Todoリストテーブル作成
-  void createTodoListTable() async {
-    // Todo: データベースを確立させる(createConnectionを使ってみる。ダメなら、openDatabaseを見直す)
-    Database database = await openDatabase(dbPath, version: 1,
-        onCreate: (Database db, int version) async {
-      await db.execute('CREATE TABLE $_todoListTable ('
-          '$_id INTEGER PRIMARY KEY AUTOINCREMENT,'
-          '$_name TEXT NOT NULL'
-          ')');
-    });
-    database.close();
+  void createTodoListTable(Database db) async {
+    await db.execute('CREATE TABLE $_todoListTable ('
+        '$_id INTEGER PRIMARY KEY AUTOINCREMENT,'
+        '$_name TEXT NOT NULL'
+        ')');
   }
 
   /// Todoリストタスクテーブル作成
-  void createTaskTable() async {
-    Database database = await openDatabase(dbPath, version: 1,
-        onCreate: (Database db, int version) async {
-      await db.execute('CREATE TABLE $_todoTaskTable ('
-          '$_id INTEGER PRIMARY KEY,'
-          '$_listID INTEGER,'
-          '$_priority INTEGER,'
-          '$_name TEXT,'
-          '$_detail TEXT'
-          ')');
-    });
-    database.close();
+  void createTaskTable(Database db) async {
+    await db.execute('CREATE TABLE $_todoTaskTable ('
+        '$_id INTEGER PRIMARY KEY AUTOINCREMENT,'
+        '$_name TEXT NOT NULL'
+        ')');
   }
 
   /// Todoタスクを挿入する
@@ -51,38 +39,31 @@ class TodoRepository extends AbstractRepository {
   /// [db]は接続した状態のDatabaseオブジェクトを渡す
   /// [value]は挿入したいデータを渡す
   /// 返却値は挿入した行番号を返す
-  // Future<int> insertTodoList(
-  //     Future<Database> db, Map<String, dynamic> value) async {
-  //   return await db.(
-  //     _todoListTable,
-  //     value,
-  //     conflictAlgorithm: ConflictAlgorithm.rollback,
-  //   );
-  // }
-
-  void insertTodoList(Map<String, dynamic> value) async {
-    Database database = await openDatabase(dbPath, onOpen: (Database db) async {
-      await db.insert(
-        _todoListTable,
-        value,
-        conflictAlgorithm: ConflictAlgorithm.rollback,
-      );
-    });
-    database.close();
+  Future<int> insertTodoList(Database db, Map<String, dynamic> value) async {
+    return await db.insert(
+      _todoListTable,
+      value,
+      conflictAlgorithm: ConflictAlgorithm.rollback,
+    );
   }
 
   /// Todoリストを取得する
-  void getTodoList() async {
-    Database database = await openDatabase(dbPath, onOpen: (Database db) async {
-      var result = await db.query(_todoListTable);
-      print("$result");
-    });
-    database.close();
+  ///
+  /// [db]は接続した状態のDatabaseオブジェクトを渡す
+  /// 返却値は取得したTodoリストの連想配列の配列を返す
+  Future<List<Map<String, Object?>>> getTodoList(Database db) async {
+    return await db.query(_todoListTable);
   }
 
   /// Todoリストを更新する
   void updateTodoTask() {}
 
   /// Todoリストを削除する
-  void deleteTodoList() {}
+  ///
+  /// [db]は接続した状態のDatabaseオブジェクトを渡す
+  /// [id]は削除対象の主キーを渡す
+  /// 返却値は削除した行数を返す
+  Future<int> deleteTodoList(Database db, int id) async {
+    return await db.delete(_todoListTable, where: 'id = ?', whereArgs: [id]);
+  }
 }

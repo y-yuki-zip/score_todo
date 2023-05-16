@@ -13,8 +13,8 @@ abstract class AbstractRepository {
   /// (2).データベースとの接続が確立されていれば、それを返却する
   Future<Database> createConnection() async {
     // _dbはアンラップできないため、ローカル変数に値を移す
-    var con = _db;
-    con ??= await openDatabase(dbPath);
-    return con;
+    var db = _db;
+    db ??= await openDatabase(dbPath);
+    return db;
   }
 }
