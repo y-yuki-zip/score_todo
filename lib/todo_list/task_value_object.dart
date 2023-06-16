@@ -16,8 +16,7 @@ class TaskValueObject {
   String trashDate = '';
 
   // イニシャライザ
-  TaskValueObject(this.id, this.listID, this.priority, this.name, this.detail,
-      this.complated, this.trashDate);
+  TaskValueObject(this.listID, this.priority, this.name, this.detail);
 
   // completedが0を超えている場合、完了と見なす
   bool get isCompleted {

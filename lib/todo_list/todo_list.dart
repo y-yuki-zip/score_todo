@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:score_todo/todo_list/todo_repository.dart';
+import 'package:score_todo/todo_list/task_value_object.dart';
 
 /// ToDoリスト
 class TodoListPage extends StatefulWidget {
@@ -14,7 +15,7 @@ class TodoListPage extends StatefulWidget {
 /// ToDoリストの状態を保持するクラス
 class TodoListPageState extends State<TodoListPage> {
   // Todoリストのデータ
-  List<String> todoList = [];
+  List<TaskValueObject> taskList = [];
 
   // Todo件名を一時的に格納する
   String taskTitle = "";
@@ -24,12 +25,12 @@ class TodoListPageState extends State<TodoListPage> {
     return Scaffold(
       body: ListView.builder(
           // リストの行数
-          itemCount: todoList.length,
+          itemCount: taskList.length,
           // リスト
           itemBuilder: (context, index) {
             return Card(
                 child: ListTile(
-                    title: Text(todoList[index]),
+                    title: Text(taskList[index].name),
                     leading: const Icon(Icons.circle_outlined),
                     trailing: TextButton(
                       onPressed: () async {
@@ -40,7 +41,7 @@ class TodoListPageState extends State<TodoListPage> {
                         print(await rep.getTodoList(db));
 
                         setState(() {
-                          todoList.removeAt(index);
+                          taskList.removeAt(index);
                         });
                       },
                       child: const Icon(Icons.delete),
@@ -120,7 +121,8 @@ class TodoListPageState extends State<TodoListPage> {
             // 変更を受け取れば処理する
             if (newTitleText != null) {
               setState(() {
-                todoList.add(newTitleText);
+                taskList
+                    .add(TaskValueObject(0, taskList.length, newTitleText, ''));
               });
             }
           },
